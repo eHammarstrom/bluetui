@@ -29,3 +29,21 @@ tui-input = "0.12"
 strip = true
 codegen-units = 1
 lto = "fat"
+
+[package.metadata.deb]
+maintainer = "Emil Hammarström <emil.a.hammarstrom@gmail.com>"
+copyright = "2025, Badr Badri <contact@pythops.com>"
+depends = "$auto"           # auto-detects libc, etc.
+section = "utils"
+priority = "optional"
+assets = [
+  ["target/release/your-app", "/usr/bin/", "755"],
+  # Optional: shell completions, man pages, etc.
+  ["completions/your-app.bash", "/usr/share/bash-completion/completions/your-app", "644"],
+  ["completions/_your-app", "/usr/share/zsh/vendor-completions/_your-app", "644"],
+  ["man/your-app.1", "/usr/share/man/man1/your-app.1", "644"]
+]
+# Optional systemd service example:
+systemd_units = [
+  { unit_name = "your-app.service", unit_path = "packaging/systemd/your-app.service" }
+]
